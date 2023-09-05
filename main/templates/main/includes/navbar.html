@@ -1,0 +1,65 @@
+{% load static %}
+<header id="page-topbar">
+    <div class="navbar-header">
+        <!-- LOGO -->
+        <div class="navbar-brand-box d-flex align-items-left">
+            <a href="/" class="logo">
+               <img src="{% static 'dashboard/images/logo.png' %}" alt="logo">
+            </a>
+        </div>
+        <button type="button" class="btn btn-sm mr-2 font-size-16 d-lg-none header-item waves-effect waves-light" data-toggle="collapse" data-target="#topnav-menu-content">
+            <i class="fa fa-fw fa-bars"></i>
+        </button>
+    </div>
+</header>
+<div class="topnav">
+    <div class="container-fluid" style="display: flex; justify-content: center;">
+        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+            
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                           Home
+                        </a>
+                    </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'frontend:seniors' %}">
+                        Senior Management
+                    </a>
+                </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'frontend:companies' %}">
+                       Our Companies
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'frontend:events' %}">
+                      Events
+                  </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="">
+                Join Us Today
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                FAQS
+                </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:logout' %}">
+                    Logout
+                </a>
+            </li>
+            {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Carousel Section -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for event in events %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img class="d-block img-fluid" src="{{ event.event_image.url }}" alt="{{ event.name }}">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 class="text-white">{{ event.name }}</h3>
+                    <p>{{ event.description }}</p>
+                    <p>{{ event.end_date|date:"F j, Y" }}</p>
+                    <a href="{{ event.company.website }}" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light">
+                        {{ event.company.name }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Carousel Controls -->
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    
+    
+    <!-- Card Deck Section -->
+    <div id="layout-wrapper">
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <img src="{{ hero.image.url }}" class="img-fluid rounded-start" alt="{{ hero.title }}">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h1>{{ hero.title }}</h1>
+                                <p class="card-text">{{ hero.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock content %}

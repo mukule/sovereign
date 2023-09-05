@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h3 class="mb-0 font-size-18">Sovereign Group Limited >> Events</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% if events %}
+                {% for senior in events %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <a href="{% url 'frontend:event_detail' event_id=senior.id %}">
+                            <div class="card">
+                                <img src="{{ senior.event_image.url }}" class="img-fluid rounded-start" alt="{{ senior.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"> <b>{{senior.name}}</b></h5>
+                                    <p class="card-text">{{senior.description}}</p>
+                                    <p class="card-text">
+                                        <small class="text-muted">Company: {{senior.company.name}}</small> || 
+                                        <small class="text-muted">Dates: {{ senior.end_date|date:"F j, Y" }}</small>
+                                        <small class="text-muted">Venue: {{ senior.location }}</small>
+                                    </p>
+                                </div>
+                             
+                            </div>
+                        </a>
+                        </div>
+                    {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        </div><div class="row">
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <p>No Events Yet Yet</p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+

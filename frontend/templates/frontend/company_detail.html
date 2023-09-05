@@ -1,0 +1,117 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h3 class="mb-0 font-size-18">Sovereign Group Limited >> {{ company.name }}</h3>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href=""></a></li>
+                            <li class="breadcrumb-item active">{{ company.name }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="layout-wrapper">
+                <div class="main-content">
+                  
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                               
+
+                            <div class="media mb-3">
+                                <img class="d-flex align-self-start rounded mr-3" src="{{ company.logo.url }}" alt="{{ company.name }}" height="48">
+                                <div class="media-body">
+                                    <h5 class="mt-0">WHO WE ARE</h5>
+                                    <p class="mb-0">{{ company.description }}</p>
+                                    <a href="{{ company.website }}" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light mt-4">
+                                        Visit Company Website
+                                    </a>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <img src="{{ company.banner_image.url }}" class="img-fluid rounded-start"
+                                         alt="{{ company.name }}">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ company.name }}</h4>
+                        <ul class="nav nav-tabs mb-3">
+                            <li class="nav-item">
+                                <a href="#mission" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <i class="mdi mdi-home-variant d-lg-none d-block"></i>
+                                    <span class="d-none d-lg-block">Mission</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#vision" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                    <i class="mdi mdi-account-circle d-lg-none d-block"></i>
+                                    <span class="d-none d-lg-block">Vision</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane" id="mission">
+                                <p>{{ company.mission }}</p>
+                            </div>
+                            <div class="tab-pane show active" id="vision">
+                                <p>{{ company.vision }}</p>
+                            </div>
+
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-2 text-center">Events taking place at {{ company.name }}</h4>
+                        {% if events %}
+                        {% for event in events %}
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td><a href="{% url 'frontend:event_detail' event_id=event.id %}">
+                                            {{ event.name }}
+                                        </a></td>
+                                        <td>{{ event.start_date|date:"F j, Y" }}</td>
+                                    
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p>No events available at the moment.</p>
+                    {% endif %}
+                    </div>
+                    <!-- end card-body-->
+                </div>
+                <!-- end card -->
+            
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

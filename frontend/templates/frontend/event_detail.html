@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h3 class="mb-0 font-size-18">Sovereign Group Limited >> {{ event.company.name }}</h3>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href=""></a></li>
+                            <li class="breadcrumb-item active">{{ event.name }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event detail content goes here -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <img src="{{ event.event_image.url }}" class="img-fluid rounded-start"
+                         alt="{{ event.name }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+                        
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h2>{{ event.name }}</h2>
+                        <p>{{ event.description }}</p>
+                        <p><strong>Start Date:</strong> {{ event.start_date|date:"F j, Y" }}</p>
+                        <p><strong>End Date:</strong> {{ event.end_date|date:"F j, Y" }}</p>
+                        <p><strong>Location:</strong> {{ event.location }}</p>
+
+                        <a href="{{ event.company.website }}" target="_blank" class="btn btn-primary btn-rounded waves-effect waves-light text-center">
+                            Explore Company
+                        </a>
+                       
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
