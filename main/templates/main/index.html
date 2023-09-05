@@ -38,20 +38,29 @@
                 <div class="row mt-4">
                     <div class="col-md-4">
                         <div class="card mb-3">
-                            <img src="{{ hero.image.url }}" class="img-fluid rounded-start" alt="{{ hero.title }}">
+                            {% if hero %}
+                                <img src="{{ hero.image.url }}" class="img-fluid rounded-start" alt="{{ hero.title }}">
+                            {% else %}
+                                <p>No hero image available</p>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="card mb-3">
                             <div class="card-body">
-                                <h1>{{ hero.title }}</h1>
-                                <p class="card-text">{{ hero.content }}</p>
+                                {% if hero %}
+                                    <h1>{{ hero.title }}</h1>
+                                    <p class="card-text">{{ hero.content }}</p>
+                                {% else %}
+                                    <h1>No hero available</h1>
+                                    <p class="card-text">No hero content available</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
+    
 {% endblock content %}
