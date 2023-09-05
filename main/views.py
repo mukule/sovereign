@@ -5,7 +5,11 @@ from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    hero = get_object_or_404(Hero)
+    try:
+        hero = get_object_or_404(Hero)
+    except Hero.DoesNotExist:
+        hero = None  # Set hero to None if no matching object is found
+
     events = Event.objects.all()  # Retrieve all events
     return render(request, 'main/index.html', {'hero': hero, 'events': events})
 

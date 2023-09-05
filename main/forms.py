@@ -2,14 +2,14 @@ from django import forms
 from .models import *
 
 class HeroForm(forms.ModelForm):
-    # Add additional form field attributes or widgets as needed
     title = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
-    image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
+    image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
 
     class Meta:
         model = Hero
         fields = ['title', 'content', 'image']
+
 
 class SeniorForm(forms.ModelForm):
     name = forms.CharField(
