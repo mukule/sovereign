@@ -47,8 +47,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                FAQS
+                <a class="nav-link" href="{% url 'users:login' %}">
+                Login
                 </a>
             </li>
             {% if user.is_authenticated %}
@@ -57,6 +57,13 @@
                     Logout
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:dashboard' %}">
+                Dashboard
+                </a>
+            </li>
+            
             {% endif %}
                 </ul>
             </div>

@@ -65,21 +65,21 @@ def edit_senior(request, senior_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Senior profile updated successfully.')
-            return redirect('senior_list')
+            return redirect('main:seniors')
         else:
             messages.error(request, 'Error updating senior profile. Please check the form.')
 
     else:
         form = SeniorForm(instance=senior)
 
-    return render(request, 'senior/senior_form.html', {'form': form})
+    return render(request, 'main/edit_senior.html', {'form': form})
 
 
 def delete_senior(request, senior_id):
     senior = Senior.objects.get(pk=senior_id)
     senior.delete()
     messages.success(request, 'Senior profile deleted successfully.')
-    return redirect('senior_list')
+    return redirect('main:seniors')
 
 def seniors(request):
     seniors = Senior.objects.all()
@@ -102,21 +102,20 @@ def edit_company_profile(request, pk):
         form = CompanyProfileForm(request.POST, request.FILES, instance=company_profile)
         if form.is_valid():
             form.save()
-            return redirect('company_profile_list')
+            return redirect('main:companies')
     else:
         form = CompanyProfileForm(instance=company_profile)
-    return render(request, 'company_profile/edit.html', {'form': form, 'company_profile': company_profile})
+    return render(request, 'main/edit.html', {'form': form, 'company_profile': company_profile})
 
 def delete_company_profile(request, pk):
     company_profile = get_object_or_404(CompanyProfile, pk=pk)
-    if request.method == 'POST':
-        company_profile.delete()
-        return redirect('company_profile_list')
-    return render(request, 'company_profile/delete.html', {'company_profile': company_profile})
+    messages.success(request, 'The company was deleted succesfully')
+    company_profile.delete()
+    return redirect('main:companies')
 
 def company_profile_detail(request, pk):
     company_profile = get_object_or_404(CompanyProfile, pk=pk)
-    return render(request, 'company_profile/detail.html', {'company_profile': company_profile})
+    return render(request, 'main/company.html', {'company_profile': company_profile})
 
 def companies(request):
     company_profiles = CompanyProfile.objects.all()
@@ -136,3 +135,23 @@ def create_event(request):
 def events(request):
     events = Event.objects.all()
     return render(request, 'main/events.html', {'events': events})
+
+def edit_event(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Event Updated succesfully')
+            return redirect('main:events')
+    else:
+        form = EventForm(instance=event)
+
+    return render(request, 'main/edit_event.html', {'form': form, 'event': event})
+
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    event.delete()
+    return redirect('main:events')

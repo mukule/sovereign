@@ -20,13 +20,19 @@
                         <div class="card">
                             <img src="{{ senior.event_image.url }}" class="img-fluid rounded-start" alt="{{ senior.name }}">
                             <div class="card-body">
-                                <h5 class="card-title"> <b>{{senior.name}}</b></h5>
-                                <p class="card-text">This card has supporting text below as a natural
-                                    lead-in to additional content.</p>
-                                <p class="card-text">
-                                    <small class="text-muted">Last updated 3 mins ago</small>
-                                </p>
+                                <h5 class="card-title"> <b>Event Name: {{senior.name}}</b></h5>
+                                <h5 class="card-title">{{senior.description}}</h5>
+                                <h5 class="card-title">{{senior.company}}</h5>
+                                <small>{{ senior.start_date }} - {{ senior.end_date }}</small>
                             </div>
+                            <card-footer>
+                                <a href="{% url 'main:edit_event' senior.pk %}" class="btn btn-primary btn-sm mt-2">
+                                    Edit Company Details
+                                </a>
+                                <a href="{% url 'main:delete_event' senior.pk %}" class="btn btn-danger btn-sm mt-2">
+                                    Delete
+                                </a>
+                            </card-footer>
                         </div>
                         </div>
                     {% if forloop.counter|divisibleby:3 and not forloop.last %}

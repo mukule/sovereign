@@ -14,14 +14,21 @@
 
         <div class="row">
             {% if companies %}
-                {% for senior in companies %}
+                {% for company in companies %}
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card">
-                            <img src="{{ senior.logo.url }}" class="img-fluid rounded-start" alt="{{ senior.name }}">
+                            <img src="{{ company.logo.url }}" class="img-fluid rounded-start" alt="{{ company.name }}">
                         </div>
                         <div class="card card-body text-center">
                             <blockquote class="card-bodyquote mb-0">
-                               <b>{{senior.name}}</b>
+                                <b>{{ company.name }}</b>
+                                <br>
+                                <a href="{% url 'main:edit_company_profile' company.pk %}" class="btn btn-primary btn-sm mt-2">
+                                    Edit Company Details
+                                </a>
+                                <a href="{% url 'main:delete_company_profile' company.pk %}" class="btn btn-danger btn-sm mt-2">
+                                    Delete
+                                </a>
                             </blockquote>
                         </div>
                     </div>
@@ -35,7 +42,7 @@
                 </div>
             {% endif %}
             <div class="col-12 text-center">
-                <a href="{% url 'main:create_company' %}" class="btn btn-primary">Create Company</a>
+                <a href="{% url 'main:create_company' %}" class="btn btn-primary">Add Company</a>
             </div>
         </div>
 

@@ -21,10 +21,14 @@
                         </div>
                         <div class="card card-body text-center">
                             <blockquote class="card-bodyquote mb-0">
-                               <b>{{senior.name}}</b>
-                             
-                                <p>{{senior.capacity}}</p>
-                            
+                                <b>{{ senior.name }}</b>
+                                <p>{{ senior.capacity }}</p>
+                                <a href="{% url 'main:edit_senior' senior.id %}" class="btn btn-primary">
+                                    <i class="fas fa-pencil-alt"></i> Edit
+                                </a>
+                                <a href="{% url 'main:delete_senior' senior.id %}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
                             </blockquote>
                         </div>
                     </div>
@@ -41,7 +45,6 @@
                 <a href="{% url 'main:create_senior' %}" class="btn btn-primary">Create Senior</a>
             </div>
         </div>
-
     </div>
 </div>
 {% endblock content %}
